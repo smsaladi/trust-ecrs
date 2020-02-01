@@ -3,34 +3,34 @@
 <body>
 
 Hello --
-</br>
+<br/>
 
 The following endorsement has been submitted by yourself or on your behalf:
-</br>
+<br/>
 
 {{ obj.to_name }} (identified by {{ obj.to_email }}) endorses 
 {{ obj.from_name }} (identified by {{ obj.from_email }}) as a peer-reviewer
 with the following citation:
-</br>
+<br/>
 
 {{ obj.citation }}
-</br>
+<br/>
 
 To confirm: <a href="{{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}">{{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}</a>
-</br>
+<br/>
 
 To reject this request: <a href="{{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}">{{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}</a>
-</br>
+<br/>
 
 If this is request is spam, e.g. you do not recognize either
 {{ obj.to_name }} or {{ obj.from_name }}, please contact us.
-</br>
+<br/>
 
 Thank you.
-</br>
+<br/>
 
 ================
-</br>
+<br/>
 Learn more about this initiative here: <a href="https://trust-ecrs.ecrlife.org">https://trust-ecrs.ecrlife.org</a>
 </body>
 </html>
