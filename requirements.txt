@@ -1,6 +1,5 @@
 gunicorn
 flask
-flask-dotenv
 
 flask-wtf
 itsdangerous

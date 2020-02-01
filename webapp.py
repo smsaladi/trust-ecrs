@@ -19,18 +19,29 @@ from datatables import ColumnDT, DataTables
 from models import db, Endorsement, User
 
 app = Flask(__name__)
+
+
+app.config['BASE_URL'] = os.environ['BASE_URL']
+
+# For data storage
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['SQLALCHEMY_DATABASE_URI']
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+db.init_app(app)
+
+# for notification
+app.config['MAIL_SERVER'] = os.environ['MAIL_SERVER']
+app.config['MAIL_PORT'] = int(os.environ['MAIL_PORT'])
+app.config['MAIL_USE_TLS'] = bool(int(os.environ['MAIL_USE_TLS']))
+app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
+app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
+app.config['MAIL_DEFAULT_SENDER'] = 'trust-ecrs@ecrlife.org'
+mail = Mail(app)
+
+app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 csrf = CSRFProtect(app)
 def serializer(*args, **kwargs):
     return URLSafeSerializer(app.config['SECRET_KEY'], *args, **kwargs)
 
-env = DotEnv()
-env.init_app(app)
-
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db.init_app(app)
-
-app.config['MAIL_DEFAULT_SENDER'] = 'trust-ecrs@ecrlife.org'
-mail = Mail(app)
 
 @app.cli.command()
 def initdb():
