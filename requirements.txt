@@ -5,7 +5,9 @@ flask-dotenv
 flask-wtf
 itsdangerous
 flask-mail
+pymysql
 sqlalchemy
 flask_sqlalchemy
+sqlalchemy-datatables
 
 pandas

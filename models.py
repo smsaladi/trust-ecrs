@@ -18,22 +18,22 @@ class Endorsement(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.datetime.utcnow)
     mail_err = db.Column(db.Boolean, default=False)
 
-    to_name = db.Column(db.String)
-    to_email = db.Column(db.String)
-    to_group = db.Column(db.String)
-    to_orcid = db.Column(db.String, default='')
+    to_name = db.Column(db.String(100))
+    to_email = db.Column(db.String(50))
+    to_group = db.Column(db.String(100))
+    to_orcid = db.Column(db.Integer, default='')
     to_valid = db.Column(db.Boolean, default=None)
     to_hidden = db.Column(db.Boolean, default=False)
-    to_url = db.Column(db.String, default='')
+    to_url = db.Column(db.Text, default='')
 
-    from_name = db.Column(db.String)
-    from_email = db.Column(db.String)
-    from_group = db.Column(db.String)
-    from_orcid = db.Column(db.String, default='')
+    from_name = db.Column(db.String(100))
+    from_email = db.Column(db.String(50))
+    from_group = db.Column(db.String(100))
+    from_orcid = db.Column(db.Integer, default='')
     from_valid = db.Column(db.Boolean, default=None)
     from_hidden = db.Column(db.Boolean, default=False)
 
-    citation = db.Column(db.String, default='')
+    citation = db.Column(db.Text, default='')
 
     def __unicode__(self):
         return 'to:{}; from:{}'.format(self.to_email, self.from_email)
