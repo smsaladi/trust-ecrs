@@ -216,7 +216,7 @@ def send_verify_email(obj, who):
         msg = Message(
             "Please verify your submission",
             recipients=[addr])
-        msg.html = flask.render_template("verify_request.txt", obj=obj, userkey=userkey)
+        msg.body = flask.render_template("verify_request.txt", obj=obj, userkey=userkey)
         mail.send(msg)
     except Exception as e:
         print(e, file=sys.stderr)
