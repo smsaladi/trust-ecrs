@@ -21,7 +21,7 @@ class Endorsement(db.Model):
     to_name = db.Column(db.String(100))
     to_email = db.Column(db.String(50))
     to_group = db.Column(db.String(100))
-    to_orcid = db.Column(db.Integer, default='')
+    to_orcid = db.Column(db.Integer, default=None)
     to_valid = db.Column(db.Boolean, default=None)
     to_hidden = db.Column(db.Boolean, default=False)
     to_url = db.Column(db.Text, default='')
@@ -29,7 +29,7 @@ class Endorsement(db.Model):
     from_name = db.Column(db.String(100))
     from_email = db.Column(db.String(50))
     from_group = db.Column(db.String(100))
-    from_orcid = db.Column(db.Integer, default='')
+    from_orcid = db.Column(db.Integer, default=None)
     from_valid = db.Column(db.Boolean, default=None)
     from_hidden = db.Column(db.Boolean, default=False)
 
