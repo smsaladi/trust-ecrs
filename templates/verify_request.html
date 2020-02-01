@@ -15,9 +15,9 @@ with the following citation:
 {{ obj.citation }}
 
 
-To confirm: {{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}
+To confirm: <a href="{{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}">{{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}</a>
 
-To reject this request: {{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}
+To reject this request: <a href="{{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}">{{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}</a>
 
 
 
@@ -28,7 +28,7 @@ If this is request is spam, e.g. you do not recognize either
 Thank you.
 
 ================
-Learn more about this initiative here: https://trust-ecrs.ecrlife.org
+Learn more about this initiative here: <a href="https://trust-ecrs.ecrlife.org">https://trust-ecrs.ecrlife.org</a>
 
 </body>
 
