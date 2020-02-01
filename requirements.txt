@@ -1,0 +1,11 @@
+gunicorn
+flask
+flask-dotenv
+
+flask-wtf
+itsdangerous
+flask-mail
+sqlalchemy
+flask_sqlalchemy
+
+pandas

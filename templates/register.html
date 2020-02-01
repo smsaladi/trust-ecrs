@@ -1,0 +1,225 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron" style="border-radius: 5px; margin-top:15px; padding-top:25px; padding-bottom:25px; margin-bottom:0px;">
+
+<h4 class="display-4">Finding ECRs for peer review</h4>
+<hr/>
+<div class="row">
+	<div class="col-md-8">
+	<p class="lead" style="margin-bottom:1.5em; font-size: 120%;">
+		Some text about the problem. And why this can help with a solution.
+
+		How to use the form below:
+		</p>
+	</div>
+	<div class="col-md-4 mx-auto text-center align-self-center">
+	<div class="row"><div class="col">
+		<a href="https://elifesciences.org/labs/c2292989/jetfighter-towards-figure-accuracy-and-accessibility"
+		target="_blank">
+		<img src="https://iiif.elifesciences.org/journal-cms/labs_experiment/2019-04/art-circles-close-up-view-90911_0.jpg/full/250,/0/default.webp"
+				class="img-fluid" alt="Rainbow pipes"/>
+		</a>
+	</div></div>
+	<br>
+	<div class="row"><div class="col">
+		<button type="button" class="btn btn-outline-dark" onclick="toggleDiv('moreinfo');this.remove();">Peer-review resources</button>
+		<div id="moreinfo" style="display: none; font-size: 85%;">
+		<div class="list-group">
+			<a href=""
+				target="_blank" class="list-group-item list-group-item-action">
+				Site 1
+			</a>
+			<a href=""
+				target="_blank" class="list-group-item list-group-item-action">
+				Site 2
+			</a>
+			<a href=""
+				target="_blank" class="list-group-item list-group-item-action">
+				Site 3
+			</a>
+		</div>
+		</div>
+	</div></div>
+	</div>
+</div>
+
+</div>
+
+<div class="row" style="margin-top: 40px;"></div>
+
+<div class="row mx-auto" style="width: 80%; max-width: 1200px;">
+<div class="col">
+
+<form id="register" action="/submit" method="POST">
+
+
+<div class="form-group row">
+	<label for="options" class="col col-form-label">I am</label>
+
+	<div class="btn-group-toggle" data-toggle="buttons">
+		<label class="btn btn-primary" style="margin-top:5px">
+		<input  type="radio" name="role_from" id="senior_btn" autocomplete="off" required>A senior researcher endorsing an ECR
+		</label>
+		<label class="btn btn-primary" style="margin-top:5px">
+		<input type="radio" name="role_to" id="ecr_btn" autocomplete="off">An early-career researcher requesting endorsement
+		</label>
+	</div>	
+</div>
+
+
+<div class="row"><div class="col"><div class="row">
+
+<div class="col-md-5 rounded p-3" style="background-color: #f5f3f3;">
+<div class="row" id="from_fields">
+
+		<div class="form-group col-md-12">
+			<label for="from_name_input">Endorser Name</label>
+			<input type="text" class="form-control form-control-lg" name="from_name_input" required>
+		</div>
+		<div class="form-group col-md-12">
+			<label for="from_group_input">Endorser Affiliation</label>
+			<input type="text" class="form-control form-control-lg" name="from_group_input" required>
+		</div>
+		<div class="form-group col-md-12">
+			<label for="from_email_input">Endorser Email Address</label>
+			<input type="email" class="form-control form-control-lg" name="from_email_input" required>
+		</div>
+		<div class="form-group col-md-12">
+			<label for="from_orcid_input">Endorser ORCID</label>
+			<input type="text" class="form-control form-control-lg" name="from_orcid_input">
+		</div>
+
+</div>
+</div>
+
+<div class="col align-self-center">
+	<div class="row">
+	<div class="mx-auto">
+	<i class="fas fa-arrow-right fa-2x"></i>
+	</div>
+</div>
+</div>
+
+<div class="col-md-5 rounded p-3" style="background-color: #f5f3f3;">
+<div class="row" id="to_fields">
+
+		<div class="form-group col-md-12">
+			<label for="to_name_input">ECR Name</label>
+			<input type="text" class="form-control form-control-lg" name="to_name_input" required>
+		</div>
+		<div class="form-group col-md-12">
+			<label for="to_group_input">ECR Affiliation</label>
+			<input type="text" class="form-control form-control-lg" name="to_group_input" required>
+		</div>
+		<div class="form-group col-md-12">
+			<label for="to_email_input">ECR Email Address</label>
+			<input type="email" class="form-control form-control-lg" name="to_email_input" required>
+		</div>
+		<div class="form-group col-md-12">
+			<label for="to_orcid_input">ECR ORCID</label>
+			<input type="text" class="form-control form-control-lg" name="to_orcid_input">
+		</div>
+
+</div>
+</div>
+</div></div></div>
+
+<div class="row" style="margin-top: 10px;">
+	<div class="col form-group">
+		<label for="citation_input">Why? Write from the Endorser's perspective.</label>
+		<textarea class="form-control form-control-lg" name="citation_input" rows="2" required></textarea>
+	</div>
+</div>
+
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<div class="row" style="margin-top: 20px;"></div>
+
+<div class="row mx-auto" style="width: 80%; max-width: 1200px;">
+<div class="col">
+
+<div id="status">
+
+</div>
+
+</div></div>
+
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script type="text/javascript" charset="utf-8">
+function toggleDiv(id) {
+	var div = document.getElementById(id);
+	div.style.display = div.style.display == "block" ? "none" : "block";
+}
+
+$(document).ready(function () {
+
+// https://stackoverflow.com/a/32262290/2320823
+// $('button').click(function () {
+//   $('.btn-group').find('label').removeClass('active')
+//   .end().find('[type="radio"]').prop('checked', false);
+// });
+
+// https://stackoverflow.com/a/36480779/2320823
+$('.btn-group').on('click', 'label.btn', function(e) {
+	if ($(this).hasClass('active')) {
+		setTimeout(function() {
+		$(this).removeClass('active').find('input').prop('checked', false);
+		}.bind(this), 10);
+	}
+});
+
+var success_alert = `<div class="alert alert-primary" role="alert">
+Your submission has been recieved! Check your inbox to verify your entry before it's entered into the database.
+</div>`;
+
+var fail_alert = `<div class="alert alert-warning" role="alert">
+There's been an error. Please ask for help.
+</div>`;
+
+
+// https://stackoverflow.com/a/11855073/2320823
+var frm = $('#register');
+frm.submit(function (e) {
+
+	var is_senior = $("#senior_btn").parent().hasClass('active');
+	// Hack to properly handle button group
+	// If one is selected then unselected, both will be "checked"
+	if(is_senior) {
+		$("#senior_btn").prop('checked', true);
+		$("#ecr_btn").prop('checked', false);
+	} else {
+		$("#senior_btn").prop('checked', false);
+		$("#ecr_btn").prop('checked', true);
+	}
+
+	e.preventDefault();
+	$.ajax({
+		type: frm.attr('method'),
+		url: frm.attr('action'),
+		data: frm.serialize(),
+		success: function (data) {
+			if(is_senior)
+				$("#to_fields").find('input').val('');
+			else
+				$("#from_fields").find('input').val('');
+			$("#status").append(success_alert);
+		},
+		error: function (data) {
+			$("#status").append(fail_alert);
+			console.log('An error occurred.');
+		},
+	});
+});
+
+});
+</script>
+{% endblock %}

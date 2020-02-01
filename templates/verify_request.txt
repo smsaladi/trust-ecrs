@@ -1,0 +1,26 @@
+Hello --
+
+The following endorsement has been submitted by yourself or on your behalf:
+
+
+{{ obj.to_name }} (identified by {{ obj.to_email }}) endorses 
+{{ obj.from_name }} (identified by {{ obj.from_email }}) as a peer-reviewer
+with the following citation:
+
+{{ obj.citation }}
+
+
+To confirm: {{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}
+
+To reject this request: {{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}
+
+
+
+If this is request is spam, e.g. you do not recognize either
+{{ obj.to_name }} or {{ obj.from_name }}, please contact us.
+
+
+Thank you.
+
+================
+Learn more about this initiative here: https://trust-ecrs.ecrlife.org

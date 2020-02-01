@@ -1,0 +1,16 @@
+Hello --
+
+Please find and modify your endorsements and/or endorsees at the following link:
+
+{{ accept_url }}
+
+If you suspect this is spam, please click here: {{ spam_url }}
+
+
+Thank you.
+
+
+
+================
+Learn more about this initiative here: https://trust-ecrs.ecrlife.org
+
