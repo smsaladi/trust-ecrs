@@ -9,7 +9,6 @@ import sys
 
 import flask
 from flask import Flask, render_template, request, jsonify, url_for
-from flask_dotenv import DotEnv
 from flask_mail import Mail, Message
 from flask_wtf.csrf import CSRFProtect
 from itsdangerous import URLSafeSerializer
