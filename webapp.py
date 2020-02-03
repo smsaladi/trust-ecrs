@@ -114,11 +114,12 @@ def profile_data():
 
 
 @app.route("/query")
+def query_static():
+    return render_template("learn_more.html")
+
 @app.route("/query/<userkey>")
-def query(userkey=None):
-    if not userkey:
-        return render_template("learn_more.html")
-    elif userkey == 'test':
+def query(userkey):
+    if userkey == 'test':
         return render_template("query.html")
 
     try:
