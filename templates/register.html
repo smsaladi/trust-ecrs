@@ -15,12 +15,15 @@
 		if an Editor asks someone to review a paper and they suggest a past trainee, colleage, or someone else as a 
 		peer-reviewer, they are more-than-likely to take this suggestion.
 		<br/>
+		<br/>
 		The purpose of this tool is to systematize and simplify this process by capturing "endorsements" from senior
 		folks of ECRs that they believe would be good peer-reviewers for manuscripts that might be sent to themselves.
+		<br/>
 		<br/>
 		In this way, the system will help by i) avoids the mental processing where an editor has to think of an ECR,
 		ii) it avoids needing a senior person to recommend ECRs on a per-paper basis, iii) it still takes advantage of
 		the "personal connection" (perhaps "reputation") part of science/scientific networks.
+		<br/>
 		<br/>
 		Use the folk below to endorse an ECR or, as an ECR, to request an endorsement. The "Why?" should be short, e.g.
 		"I have reviewed manuscripts in A and B areas and believe they could do an excellent job of handling manuscriptsi
@@ -60,12 +63,12 @@
 
 </div>
 
-<div class="row" style="margin-top: 40px;"></div>
+<div id="register" class="row" style="margin-bottom: 40px;"></div>
 
 <div class="row mx-auto" style="width: 80%; max-width: 1200px;">
 <div class="col">
 
-<form id="register" action="/submit" method="POST">
+<form id="register_form" action="/submit" method="POST">
 
 
 <div class="form-group row">
@@ -200,7 +203,7 @@ There's been an error. Please ask for help.
 
 
 // https://stackoverflow.com/a/11855073/2320823
-var frm = $('#register');
+var frm = $('#register_form');
 frm.submit(function (e) {
 
 	var is_senior = $("#senior_btn").parent().hasClass('active');
