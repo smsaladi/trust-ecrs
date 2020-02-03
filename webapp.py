@@ -11,7 +11,7 @@ import flask
 from flask import Flask, render_template, request, jsonify, url_for, redirect
 from flask_mail import Mail, Message
 from flask_wtf.csrf import CSRFProtect
-from itsdangerous import URLSafeSerializer
+from itsdangerous import URLSafeSerializer, BadSignature
 
 from datatables import ColumnDT, DataTables
 
@@ -118,8 +118,14 @@ def profile_data():
 def query(userkey=None):
     if not userkey:
         return render_template("learn_more.html")
+    elif userkey == 'test':
+        return render_template("query.html")
 
-    addr = serializer().loads(userkey)
+    try:
+        addr = serializer().loads(userkey)
+    except BadSignature:
+        return "Bad URL. Contact help", 400
+
     q = User.query.get(addr)
     if len(q) == 0:
         return "Bad URL. Contact help", 400
@@ -127,7 +133,8 @@ def query(userkey=None):
     return render_template('query.html')
 
 @app.route('/query/<userkey>/data', methods=['POST'])
-def query_data():
+@csrf.exempt
+def query_data(userkey=None):
     """Returns server side data
     """
     columns = [
@@ -137,18 +144,21 @@ def query_data():
         ColumnDT(Endorsement.created_at)
     ]
 
-    addr = serializer().loads(userkey)
-    q = User.query.get(addr)
-    if len(q) == 0:
-        return jsonify([{}])
-
     params = request.form
-    print(params)
-
     userquery = params['search[value]']
 
-    if len(userquery) < 5:
-        return jsonify([{}])
+    if userkey == 'test':
+        q = ['x']
+    else:
+        addr = serializer().loads(userkey)
+        q = User.query.get(addr)
+
+    if len(q) == 0 or len(userquery) < 5:
+        return jsonify({
+            'draw': params['draw'],
+            'recordsFiltered': '0',
+            'data': []
+        })
 
     query = (db.session.query()
         .select_from(Endorsement)
@@ -156,10 +166,6 @@ def query_data():
     )
 
     rowTable = DataTables(params, query, columns)
-
-    n_results = len(rowTable.results)
-    print(n_results)
-
     return jsonify(rowTable.output_result())
 
 

@@ -62,6 +62,8 @@
 {% block extra_js %}
 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf-8">
+
+  var data_url = window.location.pathname + '/data';
   $(document).ready(function () {
     var table = $('#results_table').DataTable({
       "dom": 'rtip',
@@ -72,7 +74,7 @@
       },
       "serverSide": true,
       "ajax": {
-        "url": "/data",
+        "url": data_url,
         "type": "POST",
       },
       pageLength: 50
