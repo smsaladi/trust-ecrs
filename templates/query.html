@@ -13,19 +13,35 @@
 <div class="row">
 	<div class="col">
 	<p class="lead" style="margin-bottom:1.5em; font-size: 120%;">
-		Some text about the problem. And why this can help with a solution.
-
-		How to use the form below:
+		The purpose of this tool is provide a simple way for Editors to find peer-reviewers by thinking of from senior
+		folks of ECRs that they believe would be good peer-reviewers for manuscripts that might be sent to themselves.
+		<br/>
+		<br/>
+		The system will help by i) avoids the mental processing where an editor has to think of an ECR,
+		ii) it avoids needing a senior person to recommend ECRs on a per-paper basis, iii) it still takes advantage of
+		the "personal connection" (perhaps "reputation") part of science/scientific networks.
 		</p>
 	</div>
 </div>
 
 </div>
 
-<div class="row" style="margin-top: 40px;"></div>
+<div class="row" style="margin-bottom: 40px;"></div>
 
+<div class="row justify-content-md-center" id="search">
+  <div class="col-lg-10">
+    
+    <input type="text" id="search_box" class="form-control form-control-lg" aria-describedby="searchBox" placeholder="Search...">
+    <small id="searchHelpInline" class="text-muted">
+      Must be at least 5 characters long.
+    </small>
 
-<div class="row">
+</div>
+</div>
+
+<div class="row" style="margin-top: 20px;"></div>
+
+<div class="row" id="table_div" style="display:none;">
   <div class="col-lg-12">
     <table id="results_table" class="display" cellspacing="0" width="100%">
       <thead>
@@ -40,6 +56,7 @@
   </table>
 </div>
 </div>
+
 {% endblock %}
 
 {% block extra_js %}
@@ -47,13 +64,38 @@
 <script type="text/javascript" charset="utf-8">
   $(document).ready(function () {
     var table = $('#results_table').DataTable({
+      "dom": 'rtip',
       "processing": true,
+      "language": {
+        processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only"></span> ',
+        infoFiltered: '',
+      },
       "serverSide": true,
       "ajax": {
         "url": "/data",
         "type": "POST",
+      },
+      pageLength: 50
+    });
+
+    $('#search_box').on('change keyup keydown', function () {
+      var text = $('#search_box').val();
+      if (text.length >= 5) {
+        // Wait for first 'valid' query before showing table
+        if ($("#table_div").is(":hidden")) {
+          $("#table_div").show();
+          table.search(text).draw();
+
+          // Scroll to top of text box
+          $("body,html").animate(
+            { scrollTop: $("#search").offset().top - 70 }, 1000
+          );
+        } else {
+          table.search(text).draw();
+        }
       }
     });
+
   });
 </script>
 {% endblock %}
