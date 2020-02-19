@@ -1,24 +1,11 @@
-<!doctype html>
-<html lang="en">
-
-<body>
+{% extends 'base_email.html' %}
     
-Hello --
+<p>Hello --</p>
 
-Please find and modify your endorsements and/or endorsees at the following link:
+<p>Please find and modify your endorsements and/or endorsees at the following link:</p>
 
-{{ accept_url }}
+<p><a href="{{ accept_url }}">{{ accept_url }}</a></p>
 
-If you suspect this is spam, please click here: {{ spam_url }}
+<p>If you suspect this is spam, please click here: <a href="{{ spam_url }}">{{ spam_url }}</a></p>
 
-
-Thank you.
-
-
-
-================
-Learn more about this initiative here: https://trust-ecrs.ecrlife.org
-
-</body>
-
-</html>
+<p>Thank you.</p>

@@ -1,38 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-</head>
-<body>
+{% extends 'base_email.html' %}
 
-Hello --
+<p>Hello --</p>
 <br/>
 
-The following endorsement has been submitted by yourself or on your behalf:
+<p>The following endorsement has been submitted by yourself or on your behalf:</p>
 <br/>
 
-{{ obj.to_name }} (identified by {{ obj.to_email }}) endorses 
-{{ obj.from_name }} (identified by {{ obj.from_email }}) as a peer-reviewer
-with the following citation:
+<p>{{ obj.to_name }} (identified by <code>{{ obj.to_email }}</code>) endorses 
+{{ obj.from_name }} (identified by <code>{{ obj.from_email }}</code>) as a peer-reviewer
+with the following citation:</p>
 <br/>
 
-{{ obj.citation }}
+<p>{{ obj.citation }}</p>
 <br/>
 
-To confirm: <a href="{{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}">{{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}</a>
+<p>To confirm: <a href="{{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}">
+    {{ url_for('validate', userkey=userkey, row=obj.id, _external=True) }}</a></p>
 <br/>
 
-To reject this request: <a href="{{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}">{{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}</a>
+<p>To reject this request: <a href="{{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}">
+    {{ url_for('reject', userkey=userkey, row=obj.id, _external=True) }}</a></p>
 <br/>
 
-If this is request is spam, e.g. you do not recognize either
-{{ obj.to_name }} or {{ obj.from_name }}, please contact us.
+<p>If this is request is spam, e.g. you do not recognize either
+{{ obj.to_name }} or {{ obj.from_name }}, please contact us.</p>
 <br/>
 
-Thank you.
+<p>Thank you.</p>
 <br/>
-
-================
-<br/>
-Learn more about this initiative here: <a href="https://trust-ecrs.ecrlife.org">https://trust-ecrs.ecrlife.org</a>
-</body>
-</html>
