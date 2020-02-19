@@ -33,7 +33,7 @@ app.config['MAIL_PORT'] = int(os.environ['MAIL_PORT'])
 app.config['MAIL_USE_TLS'] = bool(int(os.environ['MAIL_USE_TLS']))
 app.config['MAIL_USERNAME'] = os.environ['MAIL_USERNAME']
 app.config['MAIL_PASSWORD'] = os.environ['MAIL_PASSWORD']
-app.config['MAIL_DEFAULT_SENDER'] = 'trust-ecrs@ecrlife.org'
+app.config['MAIL_DEFAULT_SENDER'] = 'TrustedReviewers <trust@ecrlife.org>'
 mail = Mail(app)
 
 app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
