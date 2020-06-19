@@ -7,9 +7,9 @@ Trusted Reviewers aims to solve a problem trying to involve more ECR reviewers i
 
 To be clear, Trusted Reviewers aims to help
 
-i) avoid the mental processing where an editor has to think of an ECR
-ii) avoid a senior person needing to recommend ECRs on a per-paper basis
-iii) maintain the "personal connection" (perhaps "reputation"/"trust") part of science/scientific networks.
+* avoid the mental processing where an editor has to think of an ECR
+* avoid a senior person needing to recommend ECRs on a per-paper basis
+* maintain the "personal connection" (perhaps "reputation"/"trust") part of science/scientific networks.
 
 
 ## Run the app
